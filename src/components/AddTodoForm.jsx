@@ -1,15 +1,18 @@
 import {useSelector, useDispatch} from 'react-redux';
+import {useState} from 'react';
 
 import {addTodo} from '../redux/todolistSlice';
 
 const AddTodoForm = () => {
     const dispatch = useDispatch();
 
-    const getUserInputs = () => {
-        let titleInput = document.querySelector('#inputTitle');
-        let descInput = document.querySelector('#inputDesc');
+    const {input, setInput} = useState([]);
 
-        addTodo(titleInput, descInput);
+    const getUserInputs = () => {
+        let titleInput = document.querySelector('#inputTitle').value;
+        let descInput = document.querySelector('#inputDesc').value;
+
+        setInput(titleInput);
     }
     
     return (

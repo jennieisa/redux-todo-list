@@ -17,7 +17,7 @@ const TodoList = () => {
                     <li key={index}>
                         <h2>{todo.title}</h2>
                         <p>{todo.desc}</p>
-                        <button onClick={() => {dispatch(deleteTodo(index))}}>Klar</button>
+                        <button onClick={() => {dispatch(deleteTodo(index))}}>Done</button>
                     </li>
                 )}
             </ul>
