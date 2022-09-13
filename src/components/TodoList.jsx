@@ -5,19 +5,19 @@ import AddTodoForm from './AddTodoForm';
 
 const TodoList = () => {
     const dispatch = useDispatch();
-    const todolist = useSelector((state) => state.todolist);
-    console.log(todolist)
+    const {todos} = useSelector((state) => state.todolist);
+    console.log(todos)
 
     return (
         <>
             <AddTodoForm />
             <ul>
                 <p>Alla todos</p>
-                {todolist.map((todo, index) => 
+                {todos.map((todo, index) => 
                     <li key={index}>
                         <h2>{todo.title}</h2>
                         <p>{todo.desc}</p>
-                        <button onClick={() => {dispatch(deleteTodo(index))}}>Done</button>
+                        <button onClick={() => {dispatch(deleteTodo(todo.id))}}>Done</button>
                     </li>
                 )}
             </ul>

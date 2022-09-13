@@ -1,19 +1,24 @@
 import {useSelector, useDispatch} from 'react-redux';
-import {useState} from 'react';
 
 import {addTodo} from '../redux/todolistSlice';
 
 const AddTodoForm = () => {
     const dispatch = useDispatch();
-
-    const {input, setInput} = useState([]);
+    const { latestId } = useSelector((state) => state.todolist);
+    console.log(latestId)
 
     const getUserInputs = () => {
         let titleInput = document.querySelector('#inputTitle').value;
         let descInput = document.querySelector('#inputDesc').value;
 
-        setInput(titleInput);
-    }
+        dispatch(
+            addTodo({
+                title: titleInput,
+                desc: descInput,
+                id: latestId + 1
+            })
+        );
+    };
     
     return (
         <div>
@@ -21,7 +26,7 @@ const AddTodoForm = () => {
             <input type="text" id="inputTitle"/>
             <label htmlFor="inputDesc">Description:</label>
             <input type="text" id="inputDesc"/>
-            <button onClick={() => {dispatch(getUserInputs())}}>Save</button>
+            <button onClick={() => {getUserInputs()}}>Save</button>
         </div>
     )
 }

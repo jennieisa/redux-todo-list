@@ -2,34 +2,32 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const todolistSlice = createSlice({
     name: 'todolist',
-    initialState: [
-        {
-            title: "Städa",
-            desc: "Sopa, damma"
-        },
-        {
-            title: "Handla",
-            desc: "Mjölk, bröd, smör"
-        }, {
-            title: "Skicka brev",
-            desc: "Köpa frimärken och lägga på postlådan"
-        }
-    ],
+    initialState: { 
+        todos: [
+            {
+                title: "Städa",
+                desc: "Sopa, damma",
+                id: 1,
+            },
+            {
+                title: "Handla",
+                desc: "Mjölk, bröd, smör",
+                id: 2,
+            }, {
+                title: "Skicka brev",
+                desc: "Köpa frimärken och lägga på postlådan",
+                id: 3,
+            },
+        ],
+        latestId: 3,
+    },
     reducers :{
         addTodo: (state, {payload}) => {
-            console.log(payload.inputTitle + payload.inputDesc);
-            
-            /*const newTodo = {
-                title: payload.inputTitle,
-                desc: payload.inputDesc,
-            }
-
-            state.todolist.push(newTodo);
-            */
+            state.todos.push(payload);
+            state.latestId += 1;
         },
         deleteTodo: (state, {payload}) => {
-            state.splice(payload, 1);
-            console.log(payload)
+            state.todos = state.todos.filter((todo) => todo.id !== payload);
         }
     }
 })
