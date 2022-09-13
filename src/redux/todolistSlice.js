@@ -16,14 +16,23 @@ const todolistSlice = createSlice({
         }
     ],
     reducers :{
-        addTodo: (state) => {
+        addTodo: (state, {payload}) => {
+            console.log(payload.inputTitle + payload.inputDesc);
+            
+            /*const newTodo = {
+                title: payload.inputTitle,
+                desc: payload.inputDesc,
+            }
 
+            state.todolist.push(newTodo);
+            */
         },
-        removeTodo: (state) => {
-
+        deleteTodo: (state, {payload}) => {
+            state.splice(payload, 1);
+            console.log(payload)
         }
     }
 })
 
 export default todolistSlice.reducer;
-export const {addTodo, removeTodo} = todolistSlice.actions;
+export const {addTodo, deleteTodo} = todolistSlice.actions;

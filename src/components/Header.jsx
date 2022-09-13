@@ -11,7 +11,7 @@ const Header = () => {
     }
 
     return (
-        <header className="App-header">
+        <header>
             <label htmlFor="todoName">Name:</label>
             <input type="text" id="todoName"/>  
             <button onClick={() => {updateName()}}>Save</button>
